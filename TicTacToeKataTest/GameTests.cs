@@ -24,7 +24,7 @@ namespace TicTacToeKataTest
     {
         public void Play(string s, int x, int y)
         {
-            throw new NotImplementedException();
+            throw new InvalidOperationException("Player X must start the game");
         }
     }
 }
