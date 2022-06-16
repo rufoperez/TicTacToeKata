@@ -1,4 +1,5 @@
 using FluentAssertions;
+using TicTacToeKata;
 
 namespace TicTacToeKataTest
 {
@@ -17,14 +18,6 @@ namespace TicTacToeKataTest
 
             act.Should().Throw<InvalidOperationException>()
                 .WithMessage("Player X must start the game");
-        }
-    }
-
-    public class Game
-    {
-        public void Play(string s, int x, int y)
-        {
-            throw new InvalidOperationException("Player X must start the game");
         }
     }
 }
