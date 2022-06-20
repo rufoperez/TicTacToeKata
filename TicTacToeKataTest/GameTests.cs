@@ -23,11 +23,14 @@ namespace TicTacToeKataTest
         }
 
         [Test]
-        public void no_winner_when_player_X_plays_first()
+        public void error_when_player_X_plays_twice()
         {
-            var winner = game.Play("X", 0, 0);
+            game.Play("X", 0, 0);
 
-            winner.Should().BeEmpty();
+            Action act = () => game.Play("X", 0, 0);
+
+            act.Should().Throw<InvalidOperationException>()
+                .WithMessage("Invalid player");
         }
 
     }
