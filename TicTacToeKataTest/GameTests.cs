@@ -49,7 +49,7 @@ namespace TicTacToeKataTest
         {
             game.Play("X", 0, 0);
 
-            Action act = () => game.Play("X", 0, 0);
+            Action act = () => game.Play("Y", 0, 0);
 
             act.Should().Throw<InvalidOperationException>()
                 .WithMessage("Invalid position");
