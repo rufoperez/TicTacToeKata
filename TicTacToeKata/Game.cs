@@ -3,7 +3,7 @@ namespace TicTacToeKata;
 public class Game
 {
     private string lastPlayer = string.Empty;
-    private List<Position> board = new List<Position>();
+    private readonly List<Position> board = new();
 
     public Game()
     {
