@@ -3,22 +3,11 @@ namespace TicTacToeKata;
 public class Game
 {
     private string lastPlayer = string.Empty;
-    private readonly List<Position> board = new();
+    private readonly Board board = new();
 
     public Game()
     {
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                board.Add(new Position
-                {
-                    x = i,
-                    y = j,
-                    symbol = string.Empty
-                });
-            }
-        }
+        board.CreateBoard(3);
     }
 
     public void Play(string s, int x, int y)
@@ -27,11 +16,11 @@ public class Game
             throw new InvalidOperationException("Player X must start the game");
         if (lastPlayer.Equals(s))
             throw new InvalidOperationException("Invalid player");
-        if(board.Any(p => p.x == x && p.y == y && !string.IsNullOrEmpty(p.symbol)))
+        if(board.IsPositionTaken(x, y))
             throw new InvalidOperationException("Invalid position");
 
         lastPlayer = s;
-        board.First(p => p.x == x && p.y == y).symbol = s;
+        board.TakePosition(x, y, s);
     }
 }
 
