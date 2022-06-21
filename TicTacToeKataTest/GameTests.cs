@@ -45,7 +45,7 @@ namespace TicTacToeKataTest
         }
 
         [Test]
-        public void error_when_player_plays_in_previousposition()
+        public void error_when_player_plays_in_previous_position()
         {
             game.Play("X", 0, 0);
 
