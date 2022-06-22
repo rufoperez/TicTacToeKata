@@ -23,10 +23,3 @@ public class Game
         board.TakePosition(x, y, s);
     }
 }
-
-public class Position
-{
-    public int x;
-    public int y;
-    public string symbol;
-}
