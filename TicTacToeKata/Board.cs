@@ -5,18 +5,33 @@ public class Board
     private readonly List<Position> positions = new();
     public void CreateBoard(int boardSize)
     {
-        for (int i = 0; i < boardSize; i++)
+        CreateBoardRows(boardSize);
+    }
+
+    private void CreateBoardRows(int boardSize)
+    {
+        for (int row = 0; row < boardSize; row++)
         {
-            for (int j = 0; j < boardSize; j++)
-            {
-                positions.Add(new Position
-                {
-                    x = i,
-                    y = j,
-                    symbol = string.Empty
-                });
-            }
+            CreateBoardColumns(boardSize, row);
         }
+    }
+
+    private void CreateBoardColumns(int boardSize, int row)
+    {
+        for (int column = 0; column < boardSize; column++)
+        {
+            CreateNewPosition(row, column);
+        }
+    }
+
+    private void CreateNewPosition(int row, int column)
+    {
+        positions.Add(new Position
+        {
+            x = row,
+            y = column,
+            symbol = string.Empty
+        });
     }
 
     public bool IsPositionTaken(int x, int y)
