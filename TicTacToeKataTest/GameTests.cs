@@ -57,7 +57,7 @@ namespace TicTacToeKataTest
         }
 
         [Test]
-        public void player_x_is_winner_if_top_row_is_full()
+        public void player_X_is_winner_if_top_row_is_full()
         {
             game.Play("X", 0, 0);
             game.Play("O", 1, 0);
@@ -68,6 +68,21 @@ namespace TicTacToeKataTest
             var winner = game.Winner();
 
             winner.Should().Be("X");
+        }
+
+        [Test]
+        public void player_O_is_winner_if_top_row_is_full()
+        {
+            game.Play("X", 2, 2);
+            game.Play("O", 0, 0);
+            game.Play("X", 1, 0);
+            game.Play("O", 0, 1);
+            game.Play("X", 1, 1);
+            game.Play("O", 0, 2);
+
+            var winner = game.Winner();
+
+            winner.Should().Be("O");
         }
     }
 }
