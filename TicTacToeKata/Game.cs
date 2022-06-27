@@ -42,6 +42,20 @@ public class Game
             }
         }
 
+        for (int i = 0; i < BOARD_SIZE; i++)
+        {
+            var firstCell = Position.Create(0, i);
+            var middleCell = Position.Create(1, i);
+            var lastCell = Position.Create(2, i);
+
+            if (board.IsPositionTaken(firstCell)
+                && (board.SymbolAtPosition(firstCell) == board.SymbolAtPosition(middleCell))
+                && (board.SymbolAtPosition(lastCell) == board.SymbolAtPosition(middleCell)))
+            {
+                return board.SymbolAtPosition(firstCell);
+            }
+        }
+
         return string.Empty;
     }
 }
