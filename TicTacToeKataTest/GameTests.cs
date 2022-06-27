@@ -55,5 +55,19 @@ namespace TicTacToeKataTest
             act.Should().Throw<InvalidOperationException>()
                 .WithMessage("Invalid position");
         }
+
+        [Test]
+        public void player_x_is_winner_if_top_row_is_full()
+        {
+            game.Play("X", 0, 0);
+            game.Play("O", 1, 0);
+            game.Play("X", 0, 1);
+            game.Play("O", 1, 1);
+            game.Play("X", 0, 2);
+
+            var winner = game.Winner();
+
+            winner.Should().Be("X");
+        }
     }
 }

@@ -24,4 +24,9 @@ public class Game
         lastPlayer = s;
         board.TakePosition(s, position);
     }
+
+    public object Winner()
+    {
+        throw new NotImplementedException();
+    }
 }
