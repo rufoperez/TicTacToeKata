@@ -2,10 +2,26 @@ namespace TicTacToeKata;
 
 public class Board
 {
-    private readonly List<Position> positions = new();
+    private readonly List<Cell> cells = new();
+
+    public List<Cell> Cells
+    {
+        get { return cells; }
+    }
+
     public void CreateBoard(int boardSize)
     {
         CreateBoardRows(boardSize);
+    }
+
+    public bool IsPositionTaken(Position position)
+    {
+        return !string.IsNullOrEmpty(cells.First(p => p.Position.Equals(position)).GetSymbol());
+    }
+
+    public void TakePosition(string s, Position position)
+    {
+        cells.First(p => p.Position.Equals(position)).TakeCell(s);
     }
 
     private void CreateBoardRows(int boardSize)
@@ -26,21 +42,6 @@ public class Board
 
     private void CreateNewPosition(int row, int column)
     {
-        positions.Add(new Position
-        {
-            x = row,
-            y = column,
-            symbol = string.Empty
-        });
-    }
-
-    public bool IsPositionTaken(int x, int y)
-    {
-        return !string.IsNullOrEmpty(positions.First(p => p.x == x && p.y == y).symbol);
-    }
-
-    public void TakePosition(int x, int y, string s)
-    {
-        positions.First(p => p.x == x && p.y == y).symbol = s;
+        cells.Add(Cell.CreateInstance(row, column));
     }
 }

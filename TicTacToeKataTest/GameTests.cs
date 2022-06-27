@@ -37,8 +37,9 @@ namespace TicTacToeKataTest
         public void error_when_player_O_plays_twice()
         {
             game.Play("X", 0, 0);
+            game.Play("O", 0, 1);
 
-            Action act = () => game.Play("X", 0, 0);
+            Action act = () => game.Play("O", 0, 2);
 
             act.Should().Throw<InvalidOperationException>()
                 .WithMessage("Invalid player");
