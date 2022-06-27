@@ -24,6 +24,11 @@ public class Board
         cells.First(p => p.Position.Equals(position)).TakeCell(s);
     }
 
+    public string SymbolAtPosition(Position position)
+    {
+        return cells.First(p => p.Position.Equals(position)).GetSymbol();
+    }
+
     private void CreateBoardRows(int boardSize)
     {
         for (int row = 0; row < boardSize; row++)

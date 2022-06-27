@@ -4,10 +4,11 @@ public class Game
 {
     private string lastPlayer = string.Empty;
     private readonly Board board = new();
+    private const int BOARD_SIZE = 3;
 
     public Game()
     {
-        board.CreateBoard(3);
+        board.CreateBoard(BOARD_SIZE);
     }
 
     public void Play(string s, int x, int y)
@@ -25,8 +26,22 @@ public class Game
         board.TakePosition(s, position);
     }
 
-    public object Winner()
+    public string Winner()
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < BOARD_SIZE; i++)
+        {
+            var firstCell = Position.Create(i, 0);
+            var middleCell = Position.Create(i, 1);
+            var lastCell = Position.Create(i, 2);
+
+            if (board.IsPositionTaken(firstCell)
+                && (board.SymbolAtPosition(firstCell) == board.SymbolAtPosition(middleCell))
+                && (board.SymbolAtPosition(lastCell) == board.SymbolAtPosition(middleCell)))
+            {
+                return board.SymbolAtPosition(firstCell);
+            }
+        }
+
+        return string.Empty;
     }
 }
