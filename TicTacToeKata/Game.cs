@@ -66,6 +66,17 @@ public class Game
             return board.SymbolAtPosition(firstCellDiagonal1);
         }
 
+        var firstCellDiagonal2 = Position.Create(0, 2);
+        var middleCellDiagonal2 = Position.Create(1, 1);
+        var lastCellDiagonal2 = Position.Create(2, 0);
+
+        if (board.IsPositionTaken(firstCellDiagonal2)
+            && (board.SymbolAtPosition(firstCellDiagonal2) == board.SymbolAtPosition(middleCellDiagonal2))
+            && (board.SymbolAtPosition(lastCellDiagonal2) == board.SymbolAtPosition(middleCellDiagonal2)))
+        {
+            return board.SymbolAtPosition(firstCellDiagonal2);
+        }
+
         return string.Empty;
     }
 }
