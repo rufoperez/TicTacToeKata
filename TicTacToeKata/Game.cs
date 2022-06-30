@@ -28,6 +28,24 @@ public class Game
 
     public string Winner()
     {
+        string winner;
+        winner = CheckRows();
+        if (!string.IsNullOrEmpty(winner))
+            return winner;
+        winner = CheckColumns();
+        if (!string.IsNullOrEmpty(winner))
+            return winner;
+        winner = CheckFirstDiagonal();
+        if (!string.IsNullOrEmpty(winner))
+            return winner;
+        winner = CheckSecondDiagonal();
+        if (!string.IsNullOrEmpty(winner))
+            return winner;
+        return string.Empty;
+    }
+
+    private string CheckRows()
+    {
         for (int i = 0; i < BOARD_SIZE; i++)
         {
             var firstCell = Position.Create(i, 0);
@@ -38,10 +56,17 @@ public class Game
                 && (board.SymbolAtPosition(firstCell) == board.SymbolAtPosition(middleCell))
                 && (board.SymbolAtPosition(lastCell) == board.SymbolAtPosition(middleCell)))
             {
-                return board.SymbolAtPosition(firstCell);
+                {
+                    return board.SymbolAtPosition(firstCell);
+                }
             }
         }
 
+        return string.Empty;
+    }
+
+    private string CheckColumns()
+    {
         for (int i = 0; i < BOARD_SIZE; i++)
         {
             var firstCell = Position.Create(0, i);
@@ -56,6 +81,11 @@ public class Game
             }
         }
 
+        return string.Empty;
+    }
+
+    private string CheckFirstDiagonal()
+    {
         var firstCellDiagonal1 = Position.Create(0, 0);
         var middleCellDiagonal1 = Position.Create(1, 1);
         var lastCellDiagonal1 = Position.Create(2, 2);
@@ -66,6 +96,11 @@ public class Game
             return board.SymbolAtPosition(firstCellDiagonal1);
         }
 
+        return string.Empty;
+    }
+
+    private string CheckSecondDiagonal()
+    {
         var firstCellDiagonal2 = Position.Create(0, 2);
         var middleCellDiagonal2 = Position.Create(1, 1);
         var lastCellDiagonal2 = Position.Create(2, 0);
