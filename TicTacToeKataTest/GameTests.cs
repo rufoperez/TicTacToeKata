@@ -242,5 +242,20 @@ namespace TicTacToeKataTest
 
             winner.Should().Be("X");
         }
+
+        [Test]
+        public void player_Y_is_winner_if_first_diagonal_is_full()
+        {
+            game.Play("X", 1, 0);
+            game.Play("O", 0, 0);
+            game.Play("X", 0, 1);
+            game.Play("O", 1, 1);
+            game.Play("X", 1, 2);
+            game.Play("O", 2, 2);
+
+            var winner = game.Winner();
+
+            winner.Should().Be("O");
+        }
     }
 }
