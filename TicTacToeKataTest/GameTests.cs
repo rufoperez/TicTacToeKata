@@ -183,5 +183,50 @@ namespace TicTacToeKataTest
 
             winner.Should().Be("X");
         }
+
+        [Test]
+        public void player_Y_is_winner_if_first_column_is_full()
+        {
+            game.Play("X", 1, 1);
+            game.Play("O", 0, 0);
+            game.Play("X", 1, 2);
+            game.Play("O", 1, 0);
+            game.Play("X", 2, 1);
+            game.Play("O", 2, 0);
+
+            var winner = game.Winner();
+
+            winner.Should().Be("O");
+        }
+
+        [Test]
+        public void player_Y_is_winner_if_second_column_is_full()
+        {
+            game.Play("X", 1, 0);
+            game.Play("O", 0, 1);
+            game.Play("X", 1, 2);
+            game.Play("O", 1, 1);
+            game.Play("X", 2, 0);
+            game.Play("O", 2, 1);
+
+            var winner = game.Winner();
+
+            winner.Should().Be("O");
+        }
+
+        [Test]
+        public void player_Y_is_winner_if_third_column_is_full()
+        {
+            game.Play("X", 1, 0);
+            game.Play("O", 0, 2);
+            game.Play("X", 1, 1);
+            game.Play("O", 1, 2);
+            game.Play("X", 2, 0);
+            game.Play("O", 2, 2);
+
+            var winner = game.Winner();
+
+            winner.Should().Be("O");
+        }
     }
 }
