@@ -56,6 +56,16 @@ public class Game
             }
         }
 
+        var firstCellDiagonal1 = Position.Create(0, 0);
+        var middleCellDiagonal1 = Position.Create(1, 1);
+        var lastCellDiagonal1 = Position.Create(2, 2);
+        if (board.IsPositionTaken(firstCellDiagonal1)
+            && (board.SymbolAtPosition(firstCellDiagonal1) == board.SymbolAtPosition(middleCellDiagonal1))
+            && (board.SymbolAtPosition(lastCellDiagonal1) == board.SymbolAtPosition(middleCellDiagonal1)))
+        {
+            return board.SymbolAtPosition(firstCellDiagonal1);
+        }
+
         return string.Empty;
     }
 }
