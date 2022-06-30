@@ -257,5 +257,34 @@ namespace TicTacToeKataTest
 
             winner.Should().Be("O");
         }
+
+        [Test]
+        public void player_X_is_winner_if_second_diagonal_is_full()
+        {
+            game.Play("X", 0, 2);
+            game.Play("O", 1, 0);
+            game.Play("X", 1, 1);
+            game.Play("O", 1, 2);
+            game.Play("X", 2, 0);
+
+            var winner = game.Winner();
+
+            winner.Should().Be("X");
+        }
+
+        [Test]
+        public void player_Y_is_winner_if_second_diagonal_is_full()
+        {
+            game.Play("X", 1, 0);
+            game.Play("O", 0, 2);
+            game.Play("X", 0, 1);
+            game.Play("O", 1, 1);
+            game.Play("X", 1, 2);
+            game.Play("O", 2, 0);
+
+            var winner = game.Winner();
+
+            winner.Should().Be("O");
+        }
     }
 }
