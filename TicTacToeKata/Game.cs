@@ -46,70 +46,61 @@ public class Game
 
     private string CheckRows()
     {
+        var symbol = string.Empty;
         for (int i = 0; i < BOARD_SIZE; i++)
         {
             var firstCell = Position.Create(i, 0);
             var middleCell = Position.Create(i, 1);
             var lastCell = Position.Create(i, 2);
 
-            if (board.IsPositionTaken(firstCell)
-                && (board.SymbolAtPosition(firstCell) == board.SymbolAtPosition(middleCell))
-                && (board.SymbolAtPosition(lastCell) == board.SymbolAtPosition(middleCell)))
-            {
-                {
-                    return board.SymbolAtPosition(firstCell);
-                }
-            }
+            symbol = CheckSameSymbolsInCells(firstCell, middleCell, lastCell);
+            if (!string.IsNullOrEmpty(symbol))
+                return symbol;
         }
-
-        return string.Empty;
+        return symbol;
     }
 
     private string CheckColumns()
     {
+        var symbol = string.Empty;
         for (int i = 0; i < BOARD_SIZE; i++)
         {
             var firstCell = Position.Create(0, i);
             var middleCell = Position.Create(1, i);
             var lastCell = Position.Create(2, i);
 
-            if (board.IsPositionTaken(firstCell)
-                && (board.SymbolAtPosition(firstCell) == board.SymbolAtPosition(middleCell))
-                && (board.SymbolAtPosition(lastCell) == board.SymbolAtPosition(middleCell)))
-            {
-                return board.SymbolAtPosition(firstCell);
-            }
+            symbol = CheckSameSymbolsInCells(firstCell, middleCell, lastCell);
+            if (!string.IsNullOrEmpty(symbol))
+                return symbol;
         }
 
-        return string.Empty;
+        return symbol;
     }
 
     private string CheckFirstDiagonal()
     {
-        var firstCellDiagonal1 = Position.Create(0, 0);
-        var middleCellDiagonal1 = Position.Create(1, 1);
-        var lastCellDiagonal1 = Position.Create(2, 2);
-        if (board.IsPositionTaken(firstCellDiagonal1)
-            && (board.SymbolAtPosition(firstCellDiagonal1) == board.SymbolAtPosition(middleCellDiagonal1))
-            && (board.SymbolAtPosition(lastCellDiagonal1) == board.SymbolAtPosition(middleCellDiagonal1)))
-        {
-            return board.SymbolAtPosition(firstCellDiagonal1);
-        }
-
-        return string.Empty;
+        var firstCellDiagonal = Position.Create(0, 0);
+        var middleCellDiagonal = Position.Create(1, 1);
+        var lastCellDiagonal = Position.Create(2, 2);
+        return CheckSameSymbolsInCells(firstCellDiagonal, middleCellDiagonal, lastCellDiagonal);
     }
 
     private string CheckSecondDiagonal()
     {
-        var firstCellDiagonal2 = Position.Create(0, 2);
-        var middleCellDiagonal2 = Position.Create(1, 1);
-        var lastCellDiagonal2 = Position.Create(2, 0);
+        var firstCellDiagonal = Position.Create(0, 2);
+        var middleCellDiagonal = Position.Create(1, 1);
+        var lastCellDiagonal = Position.Create(2, 0);
 
-        if (board.IsPositionTaken(firstCellDiagonal2)
-            && (board.SymbolAtPosition(firstCellDiagonal2) == board.SymbolAtPosition(middleCellDiagonal2))
-            && (board.SymbolAtPosition(lastCellDiagonal2) == board.SymbolAtPosition(middleCellDiagonal2)))
+        return CheckSameSymbolsInCells(firstCellDiagonal, middleCellDiagonal, lastCellDiagonal);
+    }
+
+    private string CheckSameSymbolsInCells(Position firstCell, Position middleCell, Position lastCell)
+    {
+        if (board.IsPositionTaken(firstCell)
+            && (board.SymbolAtPosition(firstCell) == board.SymbolAtPosition(middleCell))
+            && (board.SymbolAtPosition(lastCell) == board.SymbolAtPosition(middleCell)))
         {
-            return board.SymbolAtPosition(firstCellDiagonal2);
+            return board.SymbolAtPosition(firstCell);
         }
 
         return string.Empty;
